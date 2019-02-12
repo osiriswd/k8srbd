@@ -6,5 +6,5 @@ So I created a k8srbd.service, make it with an ordering dependency between docke
 And make another ordering dependency between filesystem, to ensure we can clean the rbd mount before kernel umounts all filesystems.
 The above steps are validated under CentOS 7(kernel 4.20.7).
 
-Put rbdunmapall in /usr/local/sbin/.
+Put rbdunmapall in /usr/local/sbin/ and give it a chmod +x.
 Put k8srbd.service in /usr/lib/systemd/system/ and systemctl daemon-reload && systemctl enable k8srbd
