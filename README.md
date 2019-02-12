@@ -4,3 +4,6 @@ When using ceph rbd in kubernetes, we met 2 problems:
  
 So I created a k8srbd.service, make it with an ordering dependency between docker.service, to perform a modbrobe rbd during system boot.
 And make another ordering dependency between filesystem, to ensure we can clean the rbd mount before kernel umount all filesystems.
+
+Put rbdunmapall in /usr/local/sbin/.
+Put k8srbd.service in /usr/lib/systemd/system/ and systemctl daemon-reload && systemctl enable k8srbd
