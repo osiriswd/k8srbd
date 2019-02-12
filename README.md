@@ -7,4 +7,4 @@ And make another ordering dependency between filesystem, to ensure we can clean 
 The above steps are validated under CentOS 7(kernel 4.20.7).
 
 Put rbdunmapall in /usr/local/sbin/ and give it a chmod +x.
-Put k8srbd.service in /usr/lib/systemd/system/ and systemctl daemon-reload && systemctl enable k8srbd
+Put k8srbd.service in /usr/lib/systemd/system/, then systemctl daemon-reload && systemctl enable k8srbd
