@@ -1,8 +1,8 @@
 #!/bin/sh
-function umountrbd()
-{
-mounted=`/usr/bin/df | awk '{if ($1~"/dev/rbd.*") printf $6" "}'`
-/usr/bin/umount ${mounted}
-}
-
-umountrbd && umountrbd && /usr/bin/rbdmap unmap-all
+k=0
+while [ -n "$(df | awk '{if ($1~"/dev/rbd.*") printf $6" "}')" ] && [ $k -lt 10 ]
+do
+/usr/bin/umount $(df | awk '{if ($1~"/dev/rbd.*") printf $6" "}')
+k=$(($k+1))
+done
+/usr/bin/rbdmap unmap-all
