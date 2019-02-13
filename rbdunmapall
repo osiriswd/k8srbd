@@ -1,10 +1,14 @@
 #!/bin/sh
+FUSER=`which fuser`
+UMOUNT=`which umount`
+RBDMAP=`which rbdmap`
 k=0
 rbdmounts=$(df | awk '{if ($1~"/dev/rbd.*") printf $6" "}')
 while [ -n "${rbdmounts}" ] && [ $k -lt 10 ]
 do
-/usr/bin/umount ${rbdmounts}
+${FUSER} -k ${rbdmounts}
+${UMOUNT} ${rbdmounts}
 rbdmounts=$(df | awk '{if ($1~"/dev/rbd.*") printf $6" "}')
 k=$(($k+1))
 done
-/usr/bin/rbdmap unmap-all
+${RBDMAP} unmap-all
