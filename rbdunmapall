@@ -1,7 +1,7 @@
 #!/bin/sh
 function umountrbd()
 {
-mounted=`/usr/bin/df | awk '/rbd/{printf $6" "}'`
+mounted=`/usr/bin/df | awk '{if ($1~"/dev/rbd.*") printf $6" "}'`
 /usr/bin/umount ${mounted}
 }
 
