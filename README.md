@@ -1,4 +1,4 @@
-When using ceph rbd in kubernetes, we met 2 problems:
+When using ceph rbd in kubernetes, we got 2 issues:
 1. Kubernetes node does't load rbd module.
 2. Can't reboot/shutdown system when the node is running PODs which have rbd mounted. System shutdown process will be blocked while trying to unmount rbd directories.Because when kernel unloading network/filesystem, the ceph client shut down simultaneously and fails to umount.
  
